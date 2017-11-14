@@ -24,6 +24,6 @@ jobs:
   include:
     - stage: deploy
       deploy:
-      provider: script
-      script:
-        - curl -H "Content-Type: application/json" --data '{"build":true}' -X POST "https://registry.hub.docker.com/u/valentineus/meteor/trigger/${TOKEN}/"
+        provider: script
+        script:
+          - "curl -H 'Content-Type: application/json' --data '{\"build\":true}' -X POST 'https://registry.hub.docker.com/u/valentineus/meteor/trigger/${TOKEN}/'"
