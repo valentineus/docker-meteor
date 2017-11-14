@@ -9,18 +9,19 @@ notifications:
   email:
     - "info@valentineus.link"
 
+env:
+  - "IMAGE=./default/1.6"
+  - "IMAGE=./default/1.5"
+  - "IMAGE=./default/1.4"
+  - "IMAGE=./build/1.6"
+  - "IMAGE=./build/1.5"
+  - "IMAGE=./build/1.4"
+
+script:
+  - docker build --tag "${TRAVIS_REPO_SLUG}" "${IMAGE}"
+
 jobs:
   include:
-    - stage: test
-      env:
-        - "IMAGE=./default/1.6"
-        - "IMAGE=./default/1.5"
-        - "IMAGE=./default/1.4"
-        - "IMAGE=./build/1.6"
-        - "IMAGE=./build/1.5"
-        - "IMAGE=./build/1.4"
-      script:
-        - docker build --tag "${TRAVIS_REPO_SLUG}" "${IMAGE}"
     - stage: deploy
       deploy:
         provider: script
