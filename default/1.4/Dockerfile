@@ -1,4 +1,4 @@
-FROM debian:stable-slim
+FROM ubuntu:rolling
 LABEL maintainer="info@valentineus.link"
 
 ENV METEOR_ALLOW_SUPERUSER="true"
