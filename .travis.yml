@@ -10,9 +10,13 @@ notifications:
     - "info@valentineus.link"
 
 env:
+  - "IMAGE=./default/latest"
+  - "IMAGE=./default/1.7"
   - "IMAGE=./default/1.6"
   - "IMAGE=./default/1.5"
   - "IMAGE=./default/1.4"
+  - "IMAGE=./build/latest"
+  - "IMAGE=./build/1.7"
   - "IMAGE=./build/1.6"
   - "IMAGE=./build/1.5"
   - "IMAGE=./build/1.4"
