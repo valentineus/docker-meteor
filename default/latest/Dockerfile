@@ -2,15 +2,11 @@ FROM ubuntu:rolling
 LABEL maintainer="info@valentineus.link"
 
 ENV METEOR_ALLOW_SUPERUSER="true"
-WORKDIR "/workspace"
 
 RUN set -ex \
     && apt-get update \
     && apt-get --no-install-recommends --no-install-suggests --yes install \
-        ca-certificates \
-        curl \
-        git \
-        openssl \
+        ca-certificates curl git openssl \
     && curl https://install.meteor.com | sh \
     && apt-get --purge --yes remove curl \
     && apt-get --purge --yes autoremove \
@@ -22,4 +18,5 @@ RUN set -ex \
     && find /var/tmp -type f -exec rm {} \;
 
 EXPOSE 3000
+WORKDIR "/workspace"
 CMD [ "/usr/local/bin/meteor", "run" ]

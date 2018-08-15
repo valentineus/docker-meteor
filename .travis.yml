@@ -10,24 +10,19 @@ notifications:
     - "info@valentineus.link"
 
 env:
-  - "IMAGE=./default/latest"
-  - "IMAGE=./default/1.7"
-  - "IMAGE=./default/1.6"
-  - "IMAGE=./default/1.5"
-  - "IMAGE=./default/1.4"
-  - "IMAGE=./build/latest"
-  - "IMAGE=./build/1.7"
-  - "IMAGE=./build/1.6"
-  - "IMAGE=./build/1.5"
-  - "IMAGE=./build/1.4"
+  - TAG="latest"    RELEASE="latest"  DIRECTORY="./default/latest"
+  - TAG="1.7"       RELEASE="1.7"     DIRECTORY="./default/release"
+  - TAG="1.6"       RELEASE="1.6"     DIRECTORY="./default/release"
+  - TAG="1.5"       RELEASE="1.5"     DIRECTORY="./default/release"
+  - TAG="1.4"       RELEASE="1.4"     DIRECTORY="./default/release"
+  - TAG="build"     RELEASE="latest"  DIRECTORY="./build/latest"
+  - TAG="build-1.7" RELEASE="1.7"     DIRECTORY="./build/release"
+  - TAG="build-1.6" RELEASE="1.6"     DIRECTORY="./build/release"
+  - TAG="build-1.5" RELEASE="1.5"     DIRECTORY="./build/release"
+  - TAG="build-1.4" RELEASE="1.4"     DIRECTORY="./build/release"
 
 script:
-  - docker build --tag "${TRAVIS_REPO_SLUG}" "${IMAGE}"
+  - docker build --build-arg RELEASE="${RELEASE}" --tag "${TAG}" "${DIRECTORY}"
 
-jobs:
-  include:
-    - stage: deploy
-      deploy:
-        provider: script
-        script:
-          - "curl -H 'Content-Type: application/json' --data '{\"build\":true}' -X POST 'https://registry.hub.docker.com/u/valentineus/meteor/trigger/${TOKEN}/'"
+after_success:
+  - "curl -H 'Content-Type: application/json' --data '{\"docker_tag\":\"${TAG}\"}' -X POST 'https://registry.hub.docker.com/u/valentineus/meteor/trigger/${TOKEN}/'"
