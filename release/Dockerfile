@@ -6,6 +6,7 @@ ENV METEOR_ALLOW_SUPERUSER="true"
 ARG release
 
 RUN set -ex \
+    && echo "Release: ${RELEASE}"
     && apt-get update \
     && apt-get --no-install-recommends --no-install-suggests --yes install \
         ca-certificates curl git openssl \

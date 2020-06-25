@@ -14,7 +14,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
-          
+
       - uses: docker/build-push-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
@@ -31,7 +31,12 @@ jobs:
       matrix:
         version:
           - "1.10"
+          - "1.9"
+          - "1.8"
+          - "1.7"
           - "1.6"
+          - "1.5"
+          - "1.4"
 
     steps:
       - uses: actions/checkout@v2
