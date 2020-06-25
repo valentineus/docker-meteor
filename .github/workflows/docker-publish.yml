@@ -38,6 +38,9 @@ jobs:
           - "1.5"
           - "1.4"
 
+    env:
+      RELEASE: ${{ matrix.version }}
+
     steps:
       - uses: actions/checkout@v2
         with:
@@ -51,6 +54,5 @@ jobs:
           repository: valentineus/meteor
           tags: ${{ matrix.version }}
           path: release
-          buildargs: RELEASE=${{ matrix.version }}
           tag_with_ref: true
           tag_with_sha: true
