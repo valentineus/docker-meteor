@@ -19,7 +19,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: valentineus/meteor
           dockerfile: "Dockerfile"
-          path: "./latest"
+          path: "latest"
           tag_with_ref: true
           tag_with_sha: true
 
@@ -40,7 +40,7 @@ jobs:
           tag: ${{ matrix.version }}
           repository: valentineus/meteor
           dockerfile: "Dockerfile"
-          path: "./release"
+          path: "release"
           buildargs: "RELEASE=${{ matrix.version }}"
           tag_with_ref: true
           tag_with_sha: true
