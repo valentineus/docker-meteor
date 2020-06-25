@@ -15,10 +15,7 @@ jobs:
     strategy:
       matrix:
         include:
-          version: [
-            "1.10",
-            "1.6"
-          ]
+          version: ["1.10", "1.6"]
 
     steps:
       - uses: docker/build-push-action@v1
