@@ -5,9 +5,6 @@ on:
     branches:
       - master
 
-env:
-  IMAGE_NAME: "valentineus/meteor"
-
 jobs:
   push-latest:
     runs-on: ubuntu-latest
@@ -18,7 +15,7 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: valentineus/meteor
-          path: "release"
+          path: latest
           tag_with_ref: true
           tag_with_sha: true
 
@@ -38,7 +35,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           tag: ${{ matrix.version }}
           repository: valentineus/meteor
-          path: "latest"
-          buildargs: "RELEASE=${{ matrix.version }}"
+          path: release
+          buildargs: RELEASE=${{ matrix.version }}
           tag_with_ref: true
           tag_with_sha: true
