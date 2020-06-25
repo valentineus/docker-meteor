@@ -9,12 +9,25 @@ env:
   IMAGE_NAME: "valentineus/meteor"
 
 jobs:
-  push:
+  push-latest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+          repository: valentineus/meteor
+          dockerfile: "latest/Dockerfile"
+
+  push-release:
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        version: [1.10, 1.6]
+        version:
+          - "1.10"
+          - "1.6"
 
     steps:
       - uses: docker/build-push-action@v1
@@ -23,5 +36,5 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           tag: ${{ matrix.version }}
           repository: valentineus/meteor
-          dockerfile: "default/release/Dockerfile"
+          dockerfile: "release/Dockerfile"
           buildargs: "RELEASE=${{ matrix.version }}"
