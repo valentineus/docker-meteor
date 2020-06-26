@@ -20,5 +20,7 @@ RUN set -ex \
     && find /var/tmp -type f -exec rm {} \;
 
 EXPOSE 3000
+
 WORKDIR "/workspace"
+
 CMD [ "/usr/local/bin/meteor", "run" ]
