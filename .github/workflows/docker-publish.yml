@@ -38,9 +38,6 @@ jobs:
           - "1.5"
           - "1.4"
 
-    env:
-      RELEASE: ${{ matrix.version }}
-
     steps:
       - uses: actions/checkout@v2
         with:
@@ -52,8 +49,8 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: valentineus/meteor
-          tags: ${{ env.RELEASE }}
+          tags: ${{ matrix.version }}
           path: release
-          build_args: RELEASE=${{ env.RELEASE }}
+          build_args: RELEASE=${{ matrix.version }}
           tag_with_ref: true
           tag_with_sha: true

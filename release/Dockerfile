@@ -3,13 +3,13 @@ LABEL maintainer="info@valentineus.link"
 
 ENV METEOR_ALLOW_SUPERUSER="true"
 
-ARG release
+ARG RELEASE
 
 RUN set -ex \
     && apt-get update \
     && apt-get --no-install-recommends --no-install-suggests --yes install \
         ca-certificates curl git openssl \
-    && curl https://install.meteor.com | sed "s/^RELEASE=.*/RELEASE=$RELEASE/g" | sh \
+    && curl https://install.meteor.com | sed "s/^RELEASE=.*/RELEASE=${RELEASE}/g" | sh \
     && apt-get --purge --yes remove curl \
     && apt-get --purge --yes autoremove \
     && apt-get clean \
