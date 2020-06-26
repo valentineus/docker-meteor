@@ -1,6 +1,6 @@
 # Images with a MeteorJS
 
-[![Build Status](https://travis-ci.org/valentineus/docker-meteor.svg?branch=master)](https://travis-ci.org/valentineus/docker-meteor)
+![Build Status](https://github.com/valentineus/docker-meteor/workflows/Docker/badge.svg)
 [![MicroBadger Layers](https://images.microbadger.com/badges/image/valentineus/meteor.svg)](https://microbadger.com/images/valentineus/meteor)
 
 Minimalistic and clean images containing the MeteorJS platform.
